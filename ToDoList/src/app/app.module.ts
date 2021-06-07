@@ -12,10 +12,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import { RegisterFormComponent } from './register-form/register-form.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

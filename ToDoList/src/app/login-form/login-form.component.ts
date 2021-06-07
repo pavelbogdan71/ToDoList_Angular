@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +12,9 @@ export class LoginFormComponent implements OnInit {
   hide = true;
   loginFormInstance: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -23,6 +26,10 @@ export class LoginFormComponent implements OnInit {
       password: ["",Validators.required],
       rememberMe: [false]
     })
+  }
+
+  onRegister(){
+    (<any>this.router).navigate(["/register"]);
   }
 
   get email(){
