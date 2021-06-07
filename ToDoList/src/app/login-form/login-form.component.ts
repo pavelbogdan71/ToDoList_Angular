@@ -20,11 +20,20 @@ export class LoginFormComponent implements OnInit {
   initForm(){
     this.loginFormInstance = this.formBuilder.group({
       email: ["",Validators.required],
-      password: ["",Validators.required]
+      password: ["",Validators.required],
+      rememberMe: [false]
     })
   }
 
   get email(){
     return this.loginFormInstance.get("email");
+  }
+
+  get password(){
+    return this.loginFormInstance.get("password");
+  }
+
+  get rememberMe(){
+    return this.loginFormInstance.get("rememberMe");
   }
 }
