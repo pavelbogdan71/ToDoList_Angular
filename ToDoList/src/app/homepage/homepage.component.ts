@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.less']
 })
 export class HomepageComponent implements OnInit {
+  displayedColumns: string[] = ['title', 'description', 'estimatedTime', 'category', 'date', 'status'];
+  columnsToDisplay: string[] = this.displayedColumns.slice();
 
   constructor() { }
 

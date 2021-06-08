@@ -15,6 +15,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import {MatTableModule} from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     ReactiveFormsModule,
     MatIconModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
