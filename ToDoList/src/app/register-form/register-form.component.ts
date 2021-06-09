@@ -10,6 +10,7 @@ export class RegisterFormComponent implements OnInit {
 
   registerFormInstance: FormGroup = new FormGroup({});
   hide = true;
+  user: any = {};
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -25,6 +26,22 @@ export class RegisterFormComponent implements OnInit {
       lastName: ["",Validators.required],
       firstName: ["",Validators.required]
     })
+  }
+
+  onRegistration(){
+    this.user = this.registerFormInstance.value;
+    this.addUser(this.user);
+  }
+
+  addUser(user){
+    let users = [];
+    if(localStorage.getItem('Users')){
+      users = JSON.parse(localStorage.getItem('Users'));
+      users = [user, ...users];
+    }else{
+      users = [user];
+    }
+    localStorage.setItem('Users',JSON.stringify(users));
   }
 
   get email(){
