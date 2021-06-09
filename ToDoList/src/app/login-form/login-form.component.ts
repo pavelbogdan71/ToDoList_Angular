@@ -25,7 +25,25 @@ export class LoginFormComponent implements OnInit {
       email: ["",Validators.required],
       password: ["",Validators.required],
       rememberMe: [false]
-    })
+    });
+  }
+
+  onLogin(){
+    let user = this.loginFormInstance.value;
+    this.checkUser(user);
+  }
+
+  checkUser(user){
+    let users = [];
+
+    if(localStorage.getItem('Users')){
+      users = JSON.parse(localStorage.getItem('Users'));
+      users.forEach((value) => {
+        if(value.email===user.email && value.password===user.password){
+          (<any>this.router).navigate(["/homepage"]);
+        }
+      });
+    }
   }
 
   onRegister(){
