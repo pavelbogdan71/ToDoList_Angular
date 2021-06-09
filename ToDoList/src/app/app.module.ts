@@ -16,12 +16,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import {MatTableModule} from '@angular/material/table';
+import { AddElementComponent } from './modals/add-element/add-element.component';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     RegisterFormComponent,
-    HomepageComponent
+    HomepageComponent,
+    AddElementComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import {MatTableModule} from '@angular/material/table';
     MatIconModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
