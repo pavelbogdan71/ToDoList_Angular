@@ -40,6 +40,12 @@ export class LoginFormComponent implements OnInit {
       users = JSON.parse(localStorage.getItem('Users'));
       users.forEach((value) => {
         if(value.email===user.email && value.password===user.password){
+
+          if(!localStorage.getItem(value.email)){
+            localStorage.setItem(value.email,null);
+          }
+          
+          localStorage.setItem("ConnectedUser",value.email);
           (<any>this.router).navigate(["/homepage"]);
         }
       });

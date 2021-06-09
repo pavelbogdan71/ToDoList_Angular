@@ -14,9 +14,20 @@ export class HomepageComponent implements OnInit {
   myList: any[]=[];
   dataSource = new MatTableDataSource();
 
+  userEmail;
+
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+    if(localStorage.getItem("ConnectedUser")){
+      this.userEmail = JSON.parse(localStorage.getItem("ConnectedUser"));
+      if(JSON.parse(localStorage.getItem(this.userEmail))){
+        this.myList = JSON.parse(localStorage.getItem(this.userEmail));
+        this.dataSource.data = this.myList;
+      }
+    }
+    
   }
 
 
@@ -29,6 +40,8 @@ export class HomepageComponent implements OnInit {
       if(result){
         this.myList.push(result.value);
         this.dataSource.data = this.myList;
+
+        localStorage.setItem(this.userEmail,JSON.stringify(this.myList));
       }
     });
     
