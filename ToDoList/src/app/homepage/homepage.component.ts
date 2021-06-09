@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { AddElementComponent } from '../modals/add-element/add-element.component';
 @Component({
   selector: 'app-homepage',
@@ -16,18 +17,20 @@ export class HomepageComponent implements OnInit {
 
   userEmail;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private router:Router) { }
 
   ngOnInit(): void {
 
-    if(localStorage.getItem("ConnectedUser")){
+    if(JSON.parse(localStorage.getItem("ConnectedUser"))){
       this.userEmail = JSON.parse(localStorage.getItem("ConnectedUser"));
       if(JSON.parse(localStorage.getItem(this.userEmail))){
         this.myList = JSON.parse(localStorage.getItem(this.userEmail));
         this.dataSource.data = this.myList;
       }
+    }else{
+      (<any>this.router).navigate(["/login"]);
     }
-    
   }
 
 

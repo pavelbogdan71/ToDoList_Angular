@@ -18,6 +18,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    localStorage.setItem("ConnectedUser",null);
   }
 
   initForm(){
@@ -44,7 +45,7 @@ export class LoginFormComponent implements OnInit {
           if(!localStorage.getItem(value.email)){
             localStorage.setItem(value.email,null);
           }
-          
+
           localStorage.setItem("ConnectedUser",value.email);
           (<any>this.router).navigate(["/homepage"]);
         }
