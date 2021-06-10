@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AddElementComponent } from '../modals/add-element/add-element.component';
@@ -8,7 +9,7 @@ import { AddElementComponent } from '../modals/add-element/add-element.component
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.less']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['title', 'description', 'estimatedTime', 'category', 'date', 'status','actions'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
@@ -17,9 +18,14 @@ export class HomepageComponent implements OnInit {
 
   userEmail;
   titleSearchValue;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,
     private router:Router) { }
+    
+    ngAfterViewInit(): void {
+      this.dataSource.sort = this.sort;
+    }
 
   ngOnInit(): void {
 

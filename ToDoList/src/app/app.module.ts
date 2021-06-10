@@ -18,6 +18,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import {MatTableModule} from '@angular/material/table';
 import { AddElementComponent } from './modals/add-element/add-element.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCheckboxModule,
     MatButtonModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
