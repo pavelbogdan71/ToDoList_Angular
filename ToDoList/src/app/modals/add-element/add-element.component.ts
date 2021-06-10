@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from 'src/app/helpers/custom-validators';
 
 @Component({
   selector: 'app-add-element',
@@ -20,7 +21,13 @@ export class AddElementComponent implements OnInit {
     this.taskForm = this.formBuilder.group({
       title: ['',Validators.required],
       description: ['',Validators.required],
-      estimatedTime: ['',Validators.required],
+      estimatedTime: ["",{
+        validators: [Validators.compose([
+          Validators.required,
+          CustomValidators.estimatedTime
+        ])],
+        updateOn: 'blur'
+      }],
       category: ['',Validators.required],
       date: ['',Validators.required],
       status: ['',Validators.required]

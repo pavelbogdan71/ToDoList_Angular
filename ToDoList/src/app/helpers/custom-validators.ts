@@ -17,4 +17,9 @@ export class CustomValidators{
             return control.value && control.value.trim().length >= value ? null : {passwordLength: true};
         }
     }
+
+    public static estimatedTime(control: AbstractControl){
+        const regex: RegExp=/[0-9]{0,}m-[0-9]{0,2}d-[0-9]{0,2}h/;
+        return regex.test(control.value) ? null : {estimatedTime: true};
+    }
 }
