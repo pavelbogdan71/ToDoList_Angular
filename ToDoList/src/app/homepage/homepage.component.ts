@@ -16,6 +16,7 @@ export class HomepageComponent implements OnInit {
   dataSource = new MatTableDataSource();
 
   userEmail;
+  titleSearchValue;
 
   constructor(public dialog: MatDialog,
     private router:Router) { }
@@ -48,5 +49,14 @@ export class HomepageComponent implements OnInit {
       }
     });
     
+  }
+
+  searchByTitle(){
+    this.dataSource.data = this.myList.filter(e => e.title.toLowerCase().startsWith(this.titleSearchValue.toLowerCase()));
+  }
+
+  clearTitleSearch(){
+    this.titleSearchValue = '';
+    this.dataSource.data = this.myList;
   }
 }

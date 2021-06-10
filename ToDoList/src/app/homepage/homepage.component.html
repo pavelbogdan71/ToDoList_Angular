@@ -1,3 +1,12 @@
+<mat-form-field class="example-form-field">
+  <mat-label>Clearable input</mat-label>
+  <input matInput type="text" [(ngModel)]="titleSearchValue">
+  <button mat-button *ngIf="titleSearchValue" matSuffix mat-icon-button aria-label="Clear" (click)="clearTitleSearch()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<button mat-raised-button (click)="searchByTitle()">Search</button>
 
 <mat-table [dataSource]="dataSource" mat-table class="mat-elevation-z8">
   
