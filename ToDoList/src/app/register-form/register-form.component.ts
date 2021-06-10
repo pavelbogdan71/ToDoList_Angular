@@ -28,7 +28,14 @@ export class RegisterFormComponent implements OnInit {
         ])],
         updateOn: 'blur'
       }],
-      password: ["",Validators.required],
+      password: ["",{
+        validators: [Validators.compose([
+          Validators.required,
+          CustomValidators.passwordLength(6),
+          CustomValidators.password
+        ])],
+        updateOn: 'blur'
+      }],
       passwordConfirmation: ["",Validators.required],
       lastName: ["",Validators.required],
       firstName: ["",Validators.required]
