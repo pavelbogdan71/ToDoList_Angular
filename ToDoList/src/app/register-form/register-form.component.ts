@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from '../helpers/custom-validators';
 
 @Component({
   selector: 'app-register-form',
@@ -20,7 +21,13 @@ export class RegisterFormComponent implements OnInit {
 
   initForm(){
     this.registerFormInstance = this.formBuilder.group({
-      email: ["",Validators.required],
+      email: ["",{
+        validators: [Validators.compose([
+          Validators.required,
+          CustomValidators.mail
+        ])],
+        updateOn: 'blur'
+      }],
       password: ["",Validators.required],
       passwordConfirmation: ["",Validators.required],
       lastName: ["",Validators.required],
