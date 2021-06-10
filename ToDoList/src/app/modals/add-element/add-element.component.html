@@ -10,12 +10,14 @@
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Estimated time" formControlName="estimatedTime">
+            <mat-error *ngIf="estimatedTime.errors?.estimatedTime">Input format: mm-dd-hh</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Category" formControlName="category">
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Date" formControlName="date">
+            <mat-error *ngIf="date.errors?.date">Input format: dd-mm-yyyy</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Status" formControlName="status">

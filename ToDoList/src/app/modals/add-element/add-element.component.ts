@@ -29,8 +29,22 @@ export class AddElementComponent implements OnInit {
         updateOn: 'blur'
       }],
       category: ['',Validators.required],
-      date: ['',Validators.required],
+      date: ["",{
+        validators: [Validators.compose([
+          Validators.required,
+          CustomValidators.date
+        ])],
+        updateOn: 'blur'
+      }],
       status: ['',Validators.required]
     })
+  }
+
+  get estimatedTime(){
+    return this.taskForm.get('estimatedTime');
+  }
+
+  get date(){
+    return this.taskForm.get('date');
   }
 }

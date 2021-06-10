@@ -19,7 +19,12 @@ export class CustomValidators{
     }
 
     public static estimatedTime(control: AbstractControl){
-        const regex: RegExp=/[0-9]{0,}m-[0-9]{0,2}d-[0-9]{0,2}h/;
+        const regex: RegExp=/[0-9]{0,}-[0-9]{0,2}-[0-9]{0,2}/;
         return regex.test(control.value) ? null : {estimatedTime: true};
+    }
+
+    public static date(control: AbstractControl){
+        const regex: RegExp=/[0-9]{0,}-[0-9]{0,2}-[0-9]{0,4}/;
+        return regex.test(control.value) ? null : {date: true};
     }
 }
