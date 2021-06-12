@@ -38,22 +38,24 @@ export class LoginFormComponent implements OnInit {
 
   checkUser(user){
     let users = [];
-
+    let ok = false;
     if(localStorage.getItem('Users')){
       users = JSON.parse(localStorage.getItem('Users'));
       users.forEach((value) => {
         if(value.email===user.email && value.password===user.password){
 
+          ok = true;
           if(!localStorage.getItem(value.email)){
             localStorage.setItem(value.email,null);
           }
 
           localStorage.setItem("ConnectedUser",JSON.stringify(value.email));
           (<any>this.router).navigate(["/homepage"]);
-        }else{
-          this.openSnackBar();
-        }
+        }  
       });
+      if(!ok){
+        this.openSnackBar();
+      }
     }
   }
 

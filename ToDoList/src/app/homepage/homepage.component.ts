@@ -19,6 +19,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   userEmail;
   titleSearchValue;
+  
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(public dialog: MatDialog,

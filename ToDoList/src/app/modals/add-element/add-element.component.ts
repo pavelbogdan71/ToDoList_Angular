@@ -39,7 +39,7 @@ export class AddElementComponent implements OnInit {
         updateOn: 'blur'
       }],
       status: [this.statusType]
-    })
+    });
   }
 
   get estimatedTime(){
