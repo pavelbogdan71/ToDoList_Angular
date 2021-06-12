@@ -1,3 +1,11 @@
+<div class="text">
+  <p >TO DO LIST</p>
+</div>
+
+
+
+<div class="search">
+
 <mat-form-field class="example-form-field">
   <mat-label>Clearable input</mat-label>
   <input matInput type="text" [(ngModel)]="titleSearchValue">
@@ -7,6 +15,7 @@
 </mat-form-field>
 
 <button mat-raised-button (click)="searchByTitle()">Search</button>
+</div>
 
 <mat-table [dataSource]="dataSource" matSort mat-table class="mat-elevation-z8">
   
@@ -37,7 +46,12 @@
 
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    <mat-cell *matCellDef="let element">
+        <label>{{element.status}}</label>
+        <button mat-button (click)="changeStatus(element)">
+          <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="actions">
@@ -51,7 +65,10 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
+<div class="add-button">
+  <label>Add new element:   </label>
+  <button mat-fab color="primary" (click)="openAddDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
 
-<button mat-fab color="primary" (click)="openAddDialog()">
-  <mat-icon>add</mat-icon>
-</button>

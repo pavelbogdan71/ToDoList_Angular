@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'src/app/helpers/custom-validators';
+import { StatusType } from 'src/app/helpers/status-type';
 
 @Component({
   selector: 'app-add-element',
@@ -10,7 +11,8 @@ import { CustomValidators } from 'src/app/helpers/custom-validators';
 export class AddElementComponent implements OnInit {
 
   taskForm: FormGroup = new FormGroup({});
-
+  statusType = StatusType.UNFINISHED;
+  
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class AddElementComponent implements OnInit {
         ])],
         updateOn: 'blur'
       }],
-      status: ['',Validators.required]
+      status: [this.statusType]
     })
   }
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { StatusType } from '../helpers/status-type';
 import { AddElementComponent } from '../modals/add-element/add-element.component';
 @Component({
   selector: 'app-homepage',
@@ -68,10 +69,22 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   onDelete(row){
     const index = this.myList.indexOf(row);
-
     if(index > -1){
       this.myList.splice(index,1);
       this.dataSource.data = this.myList;
+      localStorage.setItem(this.userEmail,JSON.stringify(this.myList));
     }
+  }
+
+  changeStatus(row){
+
+     if(row.status==StatusType.IN_PROGRESS){
+       row.status = StatusType.FINISHED;
+     }
+     if(row.status==StatusType.UNFINISHED){
+      row.status = StatusType.IN_PROGRESS;
+     }
+    localStorage.setItem(this.userEmail,JSON.stringify(this.myList));
+
   }
 }

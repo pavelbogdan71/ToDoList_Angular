@@ -1,0 +1,5 @@
+export enum StatusType{
+    UNFINISHED = "UNFINISHED",
+    IN_PROGRESS = "IN_PROGRESS",
+    FINISHED = "FINISHED"
+}

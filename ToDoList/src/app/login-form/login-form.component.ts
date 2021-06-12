@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -46,11 +48,20 @@ export class LoginFormComponent implements OnInit {
             localStorage.setItem(value.email,null);
           }
 
-          localStorage.setItem("ConnectedUser",value.email);
+          localStorage.setItem("ConnectedUser",JSON.stringify(value.email));
           (<any>this.router).navigate(["/homepage"]);
+        }else{
+          this.openSnackBar();
         }
       });
     }
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Email or password incorrect!!','OK',{
+      horizontalPosition:'center',
+      verticalPosition: 'bottom',
+    });
   }
 
   onRegister(){
