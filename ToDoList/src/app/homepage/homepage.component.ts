@@ -65,4 +65,13 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     this.titleSearchValue = '';
     this.dataSource.data = this.myList;
   }
+
+  onDelete(row){
+    const index = this.myList.indexOf(row);
+
+    if(index > -1){
+      this.myList.splice(index,1);
+      this.dataSource.data = this.myList;
+    }
+  }
 }
