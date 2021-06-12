@@ -29,9 +29,9 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    if(JSON.parse(localStorage.getItem("ConnectedUser"))){
+    if(localStorage.getItem("ConnectedUser")){
       this.userEmail = JSON.parse(localStorage.getItem("ConnectedUser"));
-      if(JSON.parse(localStorage.getItem(this.userEmail))){
+      if(localStorage.getItem(this.userEmail)){
         this.myList = JSON.parse(localStorage.getItem(this.userEmail));
         this.dataSource.data = this.myList;
       }

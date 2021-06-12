@@ -47,4 +47,20 @@ export class AddElementComponent implements OnInit {
   get date(){
     return this.taskForm.get('date');
   }
+
+  get title(){
+    return this.taskForm.get('title');
+  }
+
+  get description(){
+    return this.taskForm.get('description');
+  }
+
+  get category(){
+    return this.taskForm.get('category');
+  }
+
+  get status(){
+    return this.taskForm.get('status');
+  }
 }

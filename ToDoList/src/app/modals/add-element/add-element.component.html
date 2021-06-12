@@ -4,9 +4,11 @@
     <form [formGroup]="taskForm">
         <mat-form-field>
             <input matInput placeholder="Title" formControlName="title">
+            <mat-error *ngIf="title.invalid">Enter a title</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Description" formControlName="description">
+            <mat-error *ngIf="description.invalid">Enter a description</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Estimated time" formControlName="estimatedTime">
@@ -14,6 +16,7 @@
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Category" formControlName="category">
+            <mat-error *ngIf="category.invalid">Enter a category</mat-error>
         </mat-form-field>
         <mat-form-field>
             <input matInput placeholder="Date" formControlName="date">

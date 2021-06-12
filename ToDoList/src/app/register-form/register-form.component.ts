@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomValidators } from '../helpers/custom-validators';
 
 @Component({
@@ -13,7 +14,8 @@ export class RegisterFormComponent implements OnInit {
   hide = true;
   user: any = {};
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -36,15 +38,43 @@ export class RegisterFormComponent implements OnInit {
         ])],
         updateOn: 'blur'
       }],
-      passwordConfirmation: ["",Validators.required],
+      passwordConfirmation: ["",{
+        validators: [Validators.compose([
+          Validators.required,
+        ])],
+        updateOn: 'blur'
+      }],
       lastName: ["",Validators.required],
       firstName: ["",Validators.required]
-    })
+    }, {
+      validator: this.mustMatch('password', 'passwordConfirmation')
+  });
   }
+
+  mustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
+
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 
   onRegistration(){
     this.user = this.registerFormInstance.value;
     this.addUser(this.user);
+
+    this.openSnackBar();
   }
 
   addUser(user){
@@ -56,6 +86,13 @@ export class RegisterFormComponent implements OnInit {
       users = [user];
     }
     localStorage.setItem('Users',JSON.stringify(users));
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Register Successful!!','OK',{
+      horizontalPosition:'start',
+      verticalPosition: 'bottom',
+    });
   }
 
   get email(){
